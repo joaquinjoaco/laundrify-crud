@@ -1,38 +1,88 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.2s;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  --bg: #111111;
+  --black: #000000;
+  --border: #1d1d1d;
+  --gray: #c4c4c4;
+  --white: #ffffff;
+  --textcolor: #e0e0e0;
+  --eventyrgreen: #15b428;
+  --error: #e7195a;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* ::selection {
+
+} */
+
+body {
+  background: linear-gradient(to bottom, #0066cc 36.12%, #69eaef 86.93%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Login */
+
+.login {
   display: flex;
   flex-direction: column;
+  text-align: center;
+  margin-top: 5rem;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.login h1 {
+  font-size: 42px;
+  color: var(--white);
+  padding-bottom: 3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 335px;
+  margin: 0 auto;
+}
+
+.navlink {
+  margin: auto;
+  padding: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.navlink:nth-child(1) {
+  margin-left: 0;
+}
+.navlink:nth-child(2) {
+  margin-right: 0;
+}
+
+.is-active {
+  font-weight: 600;
+  border-bottom: 2px solid var(--white);
+}
+
+.login-form {
+  margin-top: 2rem;
+  background-color: var(--white);
+  width: 335px;
+  height: 316px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 26px;
 }
