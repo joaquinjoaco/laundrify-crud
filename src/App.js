@@ -1,29 +1,38 @@
-import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import NotFound from "./components/NotFound";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase-config";
+
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
+import Home from "./pages/Home";
 
 function App() {
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+
+
+  // handle user logout
+  const signUserOut = () => {
+    signOut(auth).then(() => {
+      localStorage.clear();
+      setIsAuth(false);
+      window.location.pathname = "/";
+    });
+  };
+
+
   return (
 
     <Router>
-      <div className="App">
 
-        <Switch>
-          <Route exact path="/">
-            <Redirect to="/login" />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="*">
-            <NotFound />
-          </Route>
-        </Switch>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
+          <Route exact path="/home" element={<Home isAuth={isAuth} signUserOut={signUserOut} />} />
+          <Route exact path="*" element={<NotFound />} />
+        </Routes>
       </div>
+
     </Router>
   );
 }
