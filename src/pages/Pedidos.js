@@ -2,7 +2,7 @@ import React from 'react'
 import Searchbar from '../components/Searchbar';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { addDoc, getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import { addDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase-config";
 import Cards from '../components/Cards';
 import NewForm from '../components/NewForm';
