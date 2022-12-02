@@ -1,7 +1,7 @@
 import React from 'react';
 import { BiSearch } from "react-icons/bi";
 
-function Navbar({ searchInput, setSearchInput, setIsHidden }) {
+function Searchbar({ searchInput, setSearchInput, setIsHidden }) {
 
      return (
           <div className="nav-wrapper">
@@ -26,4 +26,4 @@ function Navbar({ searchInput, setSearchInput, setIsHidden }) {
      )
 }
 
-export default Navbar;
+export default Searchbar;

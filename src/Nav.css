@@ -1,6 +1,6 @@
 /* nav */
 
-nav {
+.nav-wrapper nav {
   position: fixed;
   z-index: 998;
   display: flex;
@@ -22,11 +22,11 @@ nav {
 }
 
 .nav-p:nth-child(1) {
-  top: 2.5%;
+  top: 2%;
   left: 8%;
 }
 .nav-p:nth-child(3) {
-  top: 9.5%;
+  top: 10%;
   right: 8%;
 }
 

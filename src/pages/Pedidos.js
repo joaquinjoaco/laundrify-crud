@@ -1,34 +1,30 @@
 import React from 'react'
-import Navbar from '../components/Navbar';
+import Searchbar from '../components/Searchbar';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 
-function Home({ isAuth, signUserOut }) {
-
+function Pedidos({ isAuth, setShowMobileBar }) {
+     // eslint-disable-next-line
      const [isHidden, setIsHidden] = useState(true);
      const [searchInput, setSearchInput] = useState("");
 
 
-     let navigate = useNavigate();
 
      // if the user is not authenticated they are going to be redirected to the login page 
+     let navigate = useNavigate();
      useEffect(() => {
+          setShowMobileBar(true);
           if (!isAuth) {
                navigate("/");
           }
-     }, []);
+     });
 
      return (
           <div className="home">
-               {/* {!isAuth ? (
-                    <p>logueate papito</p>
-               ) : (
-                    <button onClick={signUserOut}> Log Out</button>
-               )} */}
-               <Navbar searchInput={searchInput} setSearchInput={setSearchInput} setIsHidden={setIsHidden} />
+               <Searchbar searchInput={searchInput} setSearchInput={setSearchInput} setIsHidden={setIsHidden} />
           </div>
      )
 }
 
-export default Home
+export default Pedidos;

@@ -3,7 +3,7 @@ import { auth, provider } from '../firebase-config';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-function Login({ setIsAuth, isAuth }) {
+function Login({ setIsAuth, isAuth, setShowMobileBar }) {
 
      // const [currentDisplayname, setcurrentDisplayname] = useState(null);
 
@@ -23,6 +23,7 @@ function Login({ setIsAuth, isAuth }) {
 
      // if the user is authenticated they are going to be redirected to the home page 
      useEffect(() => {
+          setShowMobileBar(false);
           if (isAuth) {
                navigate("/home");
           }

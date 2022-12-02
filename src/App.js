@@ -1,14 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
-import Home from "./pages/Home";
+import Pedidos from "./pages/Pedidos";
+import MobileBar from "./components/MobileBar";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+  const [showMobileBar, setShowMobileBar] = useState(false);
 
 
   // handle user logout
@@ -16,10 +18,8 @@ function App() {
     signOut(auth).then(() => {
       localStorage.clear();
       setIsAuth(false);
-      window.location.pathname = "/";
     });
   };
-
 
   return (
 
@@ -27,12 +27,16 @@ function App() {
 
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
-          <Route exact path="/home" element={<Home isAuth={isAuth} signUserOut={signUserOut} />} />
-          <Route exact path="*" element={<NotFound />} />
+          <Route exact path="/" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} setShowMobileBar={setShowMobileBar} />} />
+          <Route exact path="/home" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
+          <Route exact path="/pedidos" element={<Pedidos isAuth={isAuth} signUserOut={signUserOut} setShowMobileBar={setShowMobileBar} />} />
+          <Route exact path="/clientes" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
+          <Route exact path="*" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
         </Routes>
-      </div>
 
+        {showMobileBar && <MobileBar signUserOut={signUserOut} />}
+
+      </div>
     </Router>
   );
 }
