@@ -15,7 +15,7 @@
 
 .nav-p {
   position: fixed;
-  z-index: 998;
+  z-index: -1;
   color: var(--blueshadow);
   font-size: 18px;
   font-weight: 700;
@@ -79,10 +79,6 @@
 }
 
 @media screen and (min-width: 900px) {
-  .new-write-popup {
-    width: 65%;
-  }
-
   nav {
     padding-inline-start: 6rem;
     padding-inline-end: 6rem;
@@ -90,9 +86,6 @@
 }
 
 @media screen and (min-width: 1200px) {
-  .new-write-popup {
-    width: 30%;
-  }
   nav {
     padding-inline-start: 12rem;
     padding-inline-end: 12rem;
