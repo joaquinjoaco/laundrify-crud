@@ -23,7 +23,6 @@ function Pedidos({ isAuth, setShowMobileBar }) {
      const [orderItems, setOrderItems] = useState("")
      const [ordersList, setOrdersList] = useState([]);
      const ordersCollectionRef = collection(db, "pedidos");
-     // eslint-disable-next-line
      const [isHidden, setIsHidden] = useState(true);
      const [searchInput, setSearchInput] = useState("");
      const [error, setError] = useState("");
@@ -76,11 +75,11 @@ function Pedidos({ isAuth, setShowMobileBar }) {
 
 
      // deletes an order with the given 'id'
-     const deletePost = async (id) => {
-          const postDoc = doc(db, "pedidos", id);
-          await deleteDoc(postDoc);
-          getOrders();
-     };
+     // const deletePost = async (id) => {
+     //      const postDoc = doc(db, "pedidos", id);
+     //      await deleteDoc(postDoc);
+     //      getOrders();
+     // };
 
 
      // if the user is not authenticated they are going to be redirected to the login page 
@@ -97,6 +96,7 @@ function Pedidos({ isAuth, setShowMobileBar }) {
      useEffect(() => {
           getOrders();
           console.log("useEffect ran");
+          // eslint-disable-next-line
      }, [isAuth])
 
 
