@@ -6,6 +6,7 @@ import { addDoc, getDocs, collection } from "firebase/firestore";
 import { db } from "../firebase-config";
 import Cards from '../components/Cards';
 import NewForm from '../components/NewForm';
+import { MdArrowUpward } from 'react-icons/md';
 
 // filters orders 
 const getFilteredItems = (query, ordersList) => {
@@ -39,37 +40,38 @@ function Pedidos({ isAuth, setShowMobileBar }) {
      };
 
      const createPost = async () => {
+          if (isAuth) { // Checks if user is authenticated
+               let newDate = new Date()
+               let date = newDate.getDate();
+               let month = newDate.getMonth() + 1;
+               let year = newDate.getFullYear();
+               const fullDate = `${date}/${month < 10 ? `0${month}` : `${month}`}/${year}`;
 
-          let newDate = new Date()
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          const fullDate = `${date}/${month < 10 ? `0${month}` : `${month}`}/${year}`;
+               const orderItemsArray = orderItems.split(',');
+               if (client !== '' & address !== '' & orderItems !== '') {
+                    await addDoc(ordersCollectionRef, {
+                         client,
+                         address,
+                         date: fullDate,
+                         items: orderItemsArray,
+                         // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid }
+                    });
 
-          const orderItemsArray = orderItems.split(',');
-          if (client !== '' & address !== '' & orderItems !== '') {
-               await addDoc(ordersCollectionRef, {
-                    client,
-                    address,
-                    date: fullDate,
-                    items: orderItemsArray,
-                    // author: { name: auth.currentUser.displayName, id: auth.currentUser.uid }
-               });
+                    setIsHidden(true);
+                    document.getElementById("cardsWrapper").classList.remove("blur");
+                    setClient("");
+                    setAddress("");
+                    setOrderItems("");
+                    setError("");
+                    // refetches the data after 500ms
+                    setTimeout(() => {
+                         getOrders();
+                    }, 1000);
 
-               setIsHidden(true);
-               document.getElementById("cardsWrapper").classList.remove("blur");
-               setClient("");
-               setAddress("");
-               setOrderItems("");
-               setError("")
-               // refetches the data
-               getOrders();
-
-          } else {
-               setError("Hay campos vacíos.")
+               } else {
+                    setError("Hay campos vacíos.");
+               }
           }
-
-
 
      };
 
@@ -94,19 +96,34 @@ function Pedidos({ isAuth, setShowMobileBar }) {
 
      // calls getOrders 
      useEffect(() => {
-          getOrders();
-          console.log("useEffect ran");
+          if (isAuth) {
+               getOrders();
+               console.log("useEffect ran");
+          }
           // eslint-disable-next-line
      }, [isAuth])
 
 
      const filteredItems = getFilteredItems(searchInput, ordersList);
 
+     // scroll-to-top button
+     window.addEventListener("scroll", function () {
+          var topButton = document.getElementById("topButton")
+          topButton.classList.toggle("shown", window.scrollY > 100);
+     })
+
+     const scrollTop = () => {
+          window.scrollTo(0, window.scrollY - window.scrollY);
+          console.log("sex");
+     }
 
      return (
           <div className="home">
                {/* Top searchbar */}
                <Searchbar searchInput={searchInput} setSearchInput={setSearchInput} setIsHidden={setIsHidden} />
+               <div className="top-button" id="topButton" onClick={scrollTop}>
+                    <MdArrowUpward className="top-button-icon" />
+               </div>
                {/* Hidden form to add a new order */}
                {!isHidden && <NewForm
                     setIsHidden={setIsHidden}

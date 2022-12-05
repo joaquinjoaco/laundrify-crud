@@ -29,6 +29,7 @@ function NewForm({ setIsHidden, client, address, orderItems, setClient, setAddre
                     </div>
                     <div className="reason-container">
                          <label>Pedido</label>
+                         <p className="reason-p">Separado por comas (ropa1, ropa2, ropa3, ...)</p>
                          <textarea value={orderItems} onChange={(e) => { setOrderItems(e.target.value) }} ></textarea>
                     </div>
 

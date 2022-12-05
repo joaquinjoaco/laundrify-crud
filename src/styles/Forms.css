@@ -170,6 +170,15 @@
   max-height: 100px;
 }
 
+.reason-container label {
+  margin-bottom: 0;
+}
+
+.reason-p {
+  font-weight: 200;
+  font-size: 12px;
+  color: var(--link);
+}
 .reason-container textarea {
   display: block;
   background-color: var(--border);

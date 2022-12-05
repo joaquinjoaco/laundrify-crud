@@ -3,8 +3,14 @@ import { BiSearch } from "react-icons/bi";
 
 function Searchbar({ searchInput, setSearchInput, setIsHidden }) {
 
+     // Sticky bar
+     window.addEventListener("scroll", function () {
+          var header = document.querySelector("header");
+          header.classList.toggle("sticky", window.scrollY > 45);
+     })
+
      return (
-          <div className="nav-wrapper">
+          <header className="nav-wrapper">
                <p className="nav-p">Busca un pedido...</p>
                <nav>
                     <div className="search-bar">
@@ -22,7 +28,7 @@ function Searchbar({ searchInput, setSearchInput, setIsHidden }) {
                     </button>
                </nav>
                <p className="nav-p">o registra uno.</p>
-          </div>
+          </header>
      )
 }
 

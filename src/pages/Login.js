@@ -32,7 +32,7 @@ function Login({ setIsAuth, isAuth, setShowMobileBar }) {
 
      return (
           <div className="login">
-               <img className="laundrify" src="/assets/laundrify.svg" alt="Laundrify" />
+               <img className="laundrify" src="/images/laundrify.svg" alt="Laundrify" />
                <div className="login-form">
                     <div className="login-form-inputs">
                          <h1>¡Bienvenido!</h1>
