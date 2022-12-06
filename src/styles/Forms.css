@@ -1,3 +1,58 @@
+/* logout confirm */
+.logout-confirmation {
+  position: fixed;
+  z-index: 999;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  background-color: var(--white);
+  width: 80%;
+  height: 170px;
+
+  border-radius: 26px;
+  border: 2px solid var(--border);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  padding-inline-start: 2.8rem;
+  padding-inline-end: 2.8rem;
+}
+
+.logout-h1 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 2rem;
+  margin-top: 1.2rem;
+}
+
+.logout-bottom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.logout-btn {
+  padding: 10px;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  width: 80px;
+  border-radius: 26px;
+}
+
+.logout-btn:nth-child(2) {
+  background-color: var(--error);
+}
+
 /* input popup */
 .new-write-popup {
   position: fixed;
@@ -130,7 +185,7 @@
 .staff-container input,
 .sanction-container input {
   display: block;
-  background-color: var(--gray);
+  background-color: var(--white);
   color: var(--black);
   outline: none;
   border: none;

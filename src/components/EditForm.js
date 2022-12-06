@@ -1,16 +1,27 @@
 import React from 'react';
-import { MdClose } from "react-icons/md";
+import { MdClose, MdDeleteOutline } from "react-icons/md";
 
-function NewForm({ setIsHidden, client, address, orderItems, setClient, setAddress, setOrderItems, createOrder, error, setError }) {
+function EditForm({ setIsEdit, client, address, orderItems, setClient, setAddress, setOrderId, setOrderItems, editPost, deleteOrder, error, setError }) {
+
+
      return (
-          <div id="newWritePopup" className="new-write-popup">
+
+          <div className="new-write-popup">
                <div className="top-container">
-                    <p className="new-write-p">Nuevo registro</p>
+                    <p className="card-edit-p">Editar registro</p>
                     <button className="new-close-btn" onClick={() => {
-                         setIsHidden(true);
+                         deleteOrder();
                          document.getElementById("cardsWrapper").classList.remove("blur");
+                         setIsEdit(false);
+                    }}>
+                         <MdDeleteOutline className="new-write-popup-icon" />
+                    </button>
+                    <button className="new-close-btn" onClick={() => {
+                         document.getElementById("cardsWrapper").classList.remove("blur");
+                         setIsEdit(false);
                          setClient("");
                          setAddress("");
+                         setOrderId("");
                          setOrderItems("");
                          setError("");
                     }}
@@ -35,11 +46,11 @@ function NewForm({ setIsHidden, client, address, orderItems, setClient, setAddre
 
                     {error ? (<p className="error-p">{error}</p>) : (<></>)}
 
-                    <button className="new-submit-btn" onClick={createOrder}>Añadir</button>
+                    <button className="new-submit-btn" onClick={editPost}>Editar</button>
 
                </div>
           </div>
      )
 }
 
-export default NewForm
+export default EditForm

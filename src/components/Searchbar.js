@@ -10,7 +10,7 @@ function Searchbar({ searchInput, setSearchInput, setIsHidden }) {
      })
 
      return (
-          <header className="nav-wrapper">
+          <header id="navWrapper" className="nav-wrapper">
                <p className="nav-p">Busca un pedido...</p>
                <nav>
                     <div className="search-bar">

@@ -7,10 +7,13 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Pedidos from "./pages/Pedidos";
 import MobileBar from "./components/MobileBar";
+import LogoutConfirm from "./components/LogoutConfirm";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
   const [showMobileBar, setShowMobileBar] = useState(false);
+  const [logoutConfirm, setLogoutConfirm] = useState(false);
+
 
 
   // handle user logout
@@ -18,6 +21,7 @@ function App() {
     signOut(auth).then(() => {
       localStorage.clear();
       setIsAuth(false);
+      setLogoutConfirm(false);
     });
   };
 
@@ -26,6 +30,7 @@ function App() {
     <Router>
 
       <div className="App">
+        {logoutConfirm && <LogoutConfirm signUserOut={signUserOut} setLogoutConfirm={setLogoutConfirm} />}
         <Routes>
           <Route exact path="/" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} setShowMobileBar={setShowMobileBar} />} />
           <Route exact path="/home" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
@@ -34,7 +39,7 @@ function App() {
           <Route exact path="*" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
         </Routes>
 
-        {showMobileBar && <MobileBar signUserOut={signUserOut} />}
+        {showMobileBar && <MobileBar setLogoutConfirm={setLogoutConfirm} />}
 
       </div>
     </Router>

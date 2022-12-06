@@ -2,11 +2,12 @@ import React from 'react'
 import Searchbar from '../components/Searchbar';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { addDoc, getDocs, collection } from "firebase/firestore";
+import { addDoc, getDocs, collection, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
 import Cards from '../components/Cards';
 import NewForm from '../components/NewForm';
 import { MdArrowUpward } from 'react-icons/md';
+import EditForm from '../components/EditForm';
 
 // filters orders 
 const getFilteredItems = (query, ordersList) => {
@@ -21,12 +22,17 @@ const getFilteredItems = (query, ordersList) => {
 function Pedidos({ isAuth, setShowMobileBar }) {
      const [address, setAddress] = useState("");
      const [client, setClient] = useState("");
-     const [orderItems, setOrderItems] = useState("")
+     const [orderId, setOrderId] = useState("");
+     const [orderItems, setOrderItems] = useState("");
      const [ordersList, setOrdersList] = useState([]);
+
      const ordersCollectionRef = collection(db, "pedidos");
-     const [isHidden, setIsHidden] = useState(true);
-     const [searchInput, setSearchInput] = useState("");
+
      const [error, setError] = useState("");
+     const [isEdit, setIsEdit] = useState(false);
+     const [isHidden, setIsHidden] = useState(true);
+
+     const [searchInput, setSearchInput] = useState("");
 
      // get the registered orders and stores them in ordersList array
      const getOrders = async () => {
@@ -39,7 +45,7 @@ function Pedidos({ isAuth, setShowMobileBar }) {
           }
      };
 
-     const createPost = async () => {
+     const createOrder = async () => {
           if (isAuth) { // Checks if user is authenticated
                let newDate = new Date()
                let date = newDate.getDate();
@@ -66,7 +72,7 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     // refetches the data after 500ms
                     setTimeout(() => {
                          getOrders();
-                    }, 1000);
+                    }, 500);
 
                } else {
                     setError("Hay campos vacíos.");
@@ -76,12 +82,54 @@ function Pedidos({ isAuth, setShowMobileBar }) {
      };
 
 
+     // Receives the data from a specific card to be updated on the edit-form
+     const handleUpdate = (tempClient, tempAddress, tempItems, tempId) => {
+          setClient(tempClient);
+          setAddress(tempAddress);
+          setOrderItems(tempItems);
+          setOrderId(tempId);
+          document.getElementById("cardsWrapper").classList.add("blur");
+          setIsEdit(true);
+     }
+
+     const editPost = async () => {
+          if (isAuth) { // Checks if user is authenticated
+               if (client !== '' & address !== '' & orderItems !== '') {
+                    const orderItemsArray = orderItems.split(',');
+                    const orderDoc = doc(db, "pedidos", orderId);
+                    await updateDoc(orderDoc, {
+                         address,
+                         client,
+                         items: orderItemsArray
+                    });
+
+                    document.getElementById("cardsWrapper").classList.remove("blur");
+                    setIsEdit(false);
+                    setClient("");
+                    setAddress("");
+                    setOrderId("");
+                    setOrderItems("");
+                    setError("");
+                    // refetches the data after 500ms
+                    setTimeout(() => {
+                         getOrders();
+                    }, 500);
+
+               } else {
+                    setError("Hay campos vacíos.")
+               }
+          }
+     }
+
+
      // deletes an order with the given 'id'
-     // const deletePost = async (id) => {
-     //      const postDoc = doc(db, "pedidos", id);
-     //      await deleteDoc(postDoc);
-     //      getOrders();
-     // };
+     const deleteOrder = async () => {
+          if (isAuth) { // Checks if user is authenticated
+               const orderDoc = doc(db, "pedidos", orderId);
+               await deleteDoc(orderDoc);
+               getOrders();
+          }
+     };
 
 
      // if the user is not authenticated they are going to be redirected to the login page 
@@ -124,6 +172,7 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                <div className="top-button" id="topButton" onClick={scrollTop}>
                     <MdArrowUpward className="top-button-icon" />
                </div>
+
                {/* Hidden form to add a new order */}
                {!isHidden && <NewForm
                     setIsHidden={setIsHidden}
@@ -133,12 +182,30 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     setClient={setClient}
                     setAddress={setAddress}
                     setOrderItems={setOrderItems}
-                    createPost={createPost}
+                    createOrder={createOrder}
+                    deleteOrder={deleteOrder}
                     error={error}
                     setError={setError}
                />}
+
+               {/* Hidden form to edit an order */}
+               {isEdit && <EditForm
+                    setIsEdit={setIsEdit}
+                    client={client}
+                    address={address}
+                    orderItems={orderItems}
+                    setClient={setClient}
+                    setAddress={setAddress}
+                    setOrderId={setOrderId}
+                    setOrderItems={setOrderItems}
+                    editPost={editPost}
+                    deleteOrder={deleteOrder}
+                    error={error}
+                    setError={setError}
+               />}
+
                {/* orderList is shown as a grid of Cards */}
-               <Cards ordersList={ordersList} filteredItems={filteredItems} />
+               <Cards filteredItems={filteredItems} handleUpdate={handleUpdate} />
 
           </div >
      )

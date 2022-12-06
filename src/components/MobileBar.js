@@ -1,16 +1,19 @@
 import React from 'react'
-import { MdSupervisedUserCircle } from "react-icons/md";
-import { MdOutlineExitToApp } from "react-icons/md";
-import { MdOutlineHome } from "react-icons/md";
-import { MdOutlineListAlt } from "react-icons/md";
+import { MdSupervisedUserCircle, MdOutlineExitToApp, MdOutlineHome, MdOutlineListAlt } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
-function MobileBar({ signUserOut }) {
+
+
+function MobileBar({ setLogoutConfirm }) {
+
      return (
           <nav className="mobile-bar">
-               <NavLink to="/" onClick={signUserOut} className="mobile-bar-link" >
+               <button onClick={() => {
+                    setLogoutConfirm(true);
+                    document.getElementById("cardsWrapper").classList.add("blur");
+               }} className="mobile-bar-link" >
                     <MdOutlineExitToApp className="icon" />
                     <p className="mobile-bar-p">Salir</p>
-               </NavLink>
+               </button>
                <NavLink to="/home" className={({ isActive }) => (isActive ? 'mobile-bar-link-active' : 'mobile-bar-link')}>
                     <MdOutlineHome className="icon" />
                     <p className="mobile-bar-p">Inicio</p>

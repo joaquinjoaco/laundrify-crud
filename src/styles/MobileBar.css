@@ -30,6 +30,9 @@
   text-decoration: none;
   color: var(--black);
   cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
 }
 
 .mobile-bar-link-active,
