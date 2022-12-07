@@ -64,6 +64,7 @@
   display: block;
   font-size: 16px;
   font-weight: 500;
+  overflow: hidden;
 }
 
 .card-item {
@@ -71,6 +72,7 @@
   margin-top: 0.5rem;
   font-size: 14px;
   font-weight: 400;
+  overflow: hidden;
 }
 
 .spacer-line {
@@ -90,6 +92,7 @@
   margin-top: 0.5rem;
   margin-right: auto;
   font-weight: 600;
+  overflow: hidden;
 }
 
 .card-bottom-container .card-date {
@@ -97,6 +100,7 @@
   margin-top: 0.5rem;
   margin-left: auto;
   font-weight: 600;
+  overflow: hidden;
 }
 
 @media only screen and (max-width: 1700px) {

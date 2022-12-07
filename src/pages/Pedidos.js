@@ -70,11 +70,8 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     setAddress("");
                     setOrderItems("");
                     setError("");
-                    // refetches the data after 500ms
-                    setTimeout(() => {
-                         getOrders();
-                    }, 500);
-
+                    // refetches the data
+                    getOrders();
                } else {
                     setError("Hay campos vacíos.");
                }
@@ -118,11 +115,8 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     setOrderId("");
                     setOrderItems("");
                     setError("");
-                    // refetches the data after 500ms
-                    setTimeout(() => {
-                         getOrders();
-                    }, 500);
-
+                    // refetches the data             
+                    getOrders();
                } else {
                     setError("Hay campos vacíos.")
                }

@@ -5,7 +5,7 @@ function ClientNewForm({ setIsHidden, name, address, contact, setName, setAddres
      return (
           <div id="newWritePopup" className="new-write-popup client">
                <div className="top-container">
-                    <p className="new-write-p">Nuevo registro</p>
+                    <p className="new-write-p">Nuevo cliente</p>
                     <button className="new-close-btn" onClick={() => {
                          setIsHidden(true);
                          document.getElementById("cardsWrapper").classList.remove("blur");

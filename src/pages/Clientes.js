@@ -87,11 +87,8 @@ function Clientes({ isAuth, setShowMobileBar }) {
                     setAddress("");
                     setContact("")
                     setError("");
-                    // refetches the data after 500ms
-                    setTimeout(() => {
-                         getClients();
-                    }, 500);
-
+                    // refetches the data
+                    getClients();
                } else {
                     setError("Hay campos vacíos.");
                }
@@ -127,11 +124,8 @@ function Clientes({ isAuth, setShowMobileBar }) {
                     setContact("");
                     setClientId("");
                     setError("");
-                    // refetches the data after 500ms
-                    setTimeout(() => {
-                         getClients();
-                    }, 500);
-
+                    // refetches the data   
+                    getClients();
                } else {
                     setError("Hay campos vacíos.")
                }
@@ -148,9 +142,6 @@ function Clientes({ isAuth, setShowMobileBar }) {
                getClients();
           }
      };
-
-
-
 
      // scroll-to-top button
      window.addEventListener("scroll", function () {
