@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { addDoc, getDocs, collection, doc, deleteDoc, updateDoc } from "firebase/firestore";
+import { addDoc, getDocs, collection, doc, deleteDoc, updateDoc, orderBy } from "firebase/firestore";
 import { db } from "../firebase-config";
 import { MdArrowUpward } from 'react-icons/md';
 import Cards from '../components/Cards';
@@ -38,7 +38,7 @@ function Pedidos({ isAuth, setShowMobileBar }) {
      // get the registered orders and stores them in ordersList array
      const getOrders = async () => {
           try {
-               const data = await getDocs(ordersCollectionRef);
+               const data = await getDocs(ordersCollectionRef, orderBy("date", "desc"));
                setOrdersList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 
           } catch (error) {

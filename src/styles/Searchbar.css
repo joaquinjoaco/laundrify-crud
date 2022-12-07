@@ -105,16 +105,75 @@
   transition: all 0.2s;
 }
 
-@media screen and (min-width: 900px) {
-  nav {
-    padding-inline-start: 6rem;
-    padding-inline-end: 6rem;
+@media only screen and (min-width: 900px) {
+  .nav-wrapper nav {
+    padding-inline-start: 18%;
+    padding-inline-end: 18%;
+  }
+
+  .search-bar input {
+    width: 40vw;
+  }
+
+  .nav-p:nth-child(1) {
+    top: 1rem;
+    left: 11.5rem;
+  }
+  .nav-p:nth-child(3) {
+    top: 5.3rem;
+    right: 11.5rem;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  nav {
-    padding-inline-start: 12rem;
-    padding-inline-end: 12rem;
+@media only screen and (min-width: 1400px) {
+  .nav-wrapper nav {
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+  }
+
+  .nav-p:nth-child(1) {
+    top: 4rem;
+    left: 16rem;
+  }
+  .nav-p:nth-child(3) {
+    top: 8.3rem;
+    right: 16rem;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .nav-wrapper nav {
+    margin-top: 6rem;
+    margin-bottom: 10rem;
+    padding-inline-start: 10%;
+    padding-inline-end: 10%;
+  }
+
+  .nav-p:nth-child(1) {
+    top: 5rem;
+    left: 12rem;
+  }
+  .nav-p:nth-child(3) {
+    top: 9.3rem;
+    right: 12rem;
+  }
+
+  .add-button {
+    width: 13%;
+  }
+
+  .search-bar input {
+    width: 60vw;
+  }
+}
+
+@media only screen and (min-width: 2500px) {
+  .nav-p:nth-child(1) {
+    top: 5rem;
+    left: 16rem;
+  }
+  .nav-p:nth-child(3) {
+    top: 9.3rem;
+    right: 16rem;
   }
 }

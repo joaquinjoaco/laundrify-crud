@@ -47,7 +47,7 @@
   width: 100%;
   background-color: var(--blue);
   left: 0;
-  bottom: 60px;
+  bottom: 60.5px;
   border-bottom-left-radius: 26px;
   border-bottom-right-radius: 26px;
   transition: all 1s;
@@ -59,12 +59,26 @@
   0% {
     animation-timing-function: ease-in;
     opacity: 0;
-    transform: translateY(80px);
+    transform: translateY(60px);
     border-top-left-radius: 26px;
     border-top-right-radius: 26px;
   }
 
   100% {
     opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  .mobile-bar {
+    padding-inline-start: 25%;
+    padding-inline-end: 25%;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .mobile-bar {
+    padding-inline-start: 30%;
+    padding-inline-end: 30%;
   }
 }
