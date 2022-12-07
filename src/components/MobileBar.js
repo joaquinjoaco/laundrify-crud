@@ -1,15 +1,19 @@
 import React from 'react'
 import { MdSupervisedUserCircle, MdOutlineExitToApp, MdOutlineHome, MdOutlineListAlt } from "react-icons/md";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 
 function MobileBar({ setLogoutConfirm }) {
+
+     const location = useLocation();
 
      return (
           <nav className="mobile-bar">
                <button onClick={() => {
                     setLogoutConfirm(true);
-                    document.getElementById("cardsWrapper").classList.add("blur");
+                    if (location.pathname === '/clientes' || location.pathname === '/pedidos') {
+                         document.getElementById("cardsWrapper").classList.add("blur");
+                    }
                }} className="mobile-bar-link" >
                     <MdOutlineExitToApp className="icon" />
                     <p className="mobile-bar-p">Salir</p>

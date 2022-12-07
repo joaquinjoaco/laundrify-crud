@@ -7,6 +7,7 @@ import './styles/MobileBar.css';
 import './styles/Searchbar.css';
 import './styles/Card.css';
 import './styles/Forms.css';
+import './styles/Home.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

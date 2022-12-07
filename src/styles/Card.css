@@ -87,10 +87,10 @@
   margin-top: auto;
 }
 
-.card-bottom-container .card-date {
+.card-bottom-container .card-contact {
   display: inline-block;
   margin-top: 0.5rem;
-  margin-left: auto;
+  margin-right: auto;
   font-weight: 600;
 }
 

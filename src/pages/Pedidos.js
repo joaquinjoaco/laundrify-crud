@@ -1,13 +1,14 @@
 import React from 'react'
-import Searchbar from '../components/Searchbar';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { addDoc, getDocs, collection, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { db } from "../firebase-config";
+import { MdArrowUpward } from 'react-icons/md';
 import Cards from '../components/Cards';
 import NewForm from '../components/NewForm';
-import { MdArrowUpward } from 'react-icons/md';
 import EditForm from '../components/EditForm';
+import Searchbar from '../components/Searchbar';
+
 
 // filters orders 
 const getFilteredItems = (query, ordersList) => {
@@ -87,15 +88,22 @@ function Pedidos({ isAuth, setShowMobileBar }) {
           setClient(tempClient);
           setAddress(tempAddress);
           setOrderItems(tempItems);
+          console.log(orderItems);
           setOrderId(tempId);
           document.getElementById("cardsWrapper").classList.add("blur");
           setIsEdit(true);
      }
 
-     const editPost = async () => {
+     const editOrder = async () => {
           if (isAuth) { // Checks if user is authenticated
                if (client !== '' & address !== '' & orderItems !== '') {
-                    const orderItemsArray = orderItems.split(',');
+                    // checks if orderItems is already an array so that it doesn't try to split it again.
+                    let orderItemsArray = orderItems;
+                    if (!Array.isArray(orderItems)) {
+                         // if it's not an array already (meaning it has been edited in the form), this will split it into one.
+                         orderItemsArray = orderItems.split(',');
+                    }
+
                     const orderDoc = doc(db, "pedidos", orderId);
                     await updateDoc(orderDoc, {
                          address,
@@ -152,7 +160,10 @@ function Pedidos({ isAuth, setShowMobileBar }) {
      }, [isAuth])
 
 
+     // creates an array with the filtered items according to the input in the searchbar 
+     // this array is passed to the cards components
      const filteredItems = getFilteredItems(searchInput, ordersList);
+
 
      // scroll-to-top button
      window.addEventListener("scroll", function () {
@@ -166,9 +177,10 @@ function Pedidos({ isAuth, setShowMobileBar }) {
      }
 
      return (
-          <div className="home">
+          <div className="pedidos">
                {/* Top searchbar */}
                <Searchbar searchInput={searchInput} setSearchInput={setSearchInput} setIsHidden={setIsHidden} />
+               {/* to-the-top button */}
                <div className="top-button" id="topButton" onClick={scrollTop}>
                     <MdArrowUpward className="top-button-icon" />
                </div>
@@ -183,7 +195,6 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     setAddress={setAddress}
                     setOrderItems={setOrderItems}
                     createOrder={createOrder}
-                    deleteOrder={deleteOrder}
                     error={error}
                     setError={setError}
                />}
@@ -198,13 +209,13 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     setAddress={setAddress}
                     setOrderId={setOrderId}
                     setOrderItems={setOrderItems}
-                    editPost={editPost}
+                    editOrder={editOrder}
                     deleteOrder={deleteOrder}
                     error={error}
                     setError={setError}
                />}
 
-               {/* orderList is shown as a grid of Cards */}
+               {/* orderList filteredItems is shown as a grid of Cards */}
                <Cards filteredItems={filteredItems} handleUpdate={handleUpdate} />
 
           </div >

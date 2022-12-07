@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import Pedidos from "./pages/Pedidos";
 import MobileBar from "./components/MobileBar";
 import LogoutConfirm from "./components/LogoutConfirm";
+import Home from "./pages/Home";
+import Clientes from "./pages/Clientes";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -33,9 +35,9 @@ function App() {
         {logoutConfirm && <LogoutConfirm signUserOut={signUserOut} setLogoutConfirm={setLogoutConfirm} />}
         <Routes>
           <Route exact path="/" element={<Login isAuth={isAuth} setIsAuth={setIsAuth} setShowMobileBar={setShowMobileBar} />} />
-          <Route exact path="/home" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
+          <Route exact path="/home" element={<Home isAuth={isAuth} setShowMobileBar={setShowMobileBar} />} />
           <Route exact path="/pedidos" element={<Pedidos isAuth={isAuth} signUserOut={signUserOut} setShowMobileBar={setShowMobileBar} />} />
-          <Route exact path="/clientes" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
+          <Route exact path="/clientes" element={<Clientes setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
           <Route exact path="*" element={<NotFound setShowMobileBar={setShowMobileBar} isAuth={isAuth} />} />
         </Routes>
 

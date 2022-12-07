@@ -1,17 +1,17 @@
 import React from 'react';
 import { MdClose } from "react-icons/md";
 
-function NewForm({ setIsHidden, client, address, orderItems, setClient, setAddress, setOrderItems, createOrder, error, setError }) {
+function ClientNewForm({ setIsHidden, name, address, contact, setName, setAddress, setContact, createClient, error, setError }) {
      return (
-          <div id="newWritePopup" className="new-write-popup">
+          <div id="newWritePopup" className="new-write-popup client">
                <div className="top-container">
                     <p className="new-write-p">Nuevo registro</p>
                     <button className="new-close-btn" onClick={() => {
                          setIsHidden(true);
                          document.getElementById("cardsWrapper").classList.remove("blur");
-                         setClient("");
+                         setName("");
                          setAddress("");
-                         setOrderItems("");
+                         setContact("");
                          setError("");
                     }}
                     >
@@ -20,26 +20,25 @@ function NewForm({ setIsHidden, client, address, orderItems, setClient, setAddre
                </div>
                <div className="inputs-container">
                     <div className="nickname-container">
-                         <label>Cliente</label>
-                         <input value={client} onChange={(e) => { setClient(e.target.value) }} type="text" />
+                         <label>Nombre</label>
+                         <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" />
                     </div>
                     <div className="sanction-container">
                          <label>Dirección</label>
                          <input value={address} onChange={(e) => { setAddress(e.target.value) }} type="text" />
                     </div>
-                    <div className="reason-container">
-                         <label>Pedido</label>
-                         <p className="reason-p">Separado por comas (ropa1, ropa2, ropa3, ...)</p>
-                         <textarea value={orderItems} onChange={(e) => { setOrderItems(e.target.value) }} ></textarea>
+                    <div className="sanction-container">
+                         <label>Contacto</label>
+                         <input value={contact} onChange={(e) => { setContact(e.target.value) }} ></input>
                     </div>
 
                     {error ? (<p className="error-p">{error}</p>) : (<></>)}
 
-                    <button className="new-submit-btn" onClick={createOrder}>Añadir</button>
+                    <button className="new-submit-btn" onClick={createClient}>Añadir</button>
 
                </div>
           </div>
      )
 }
 
-export default NewForm;
+export default ClientNewForm;

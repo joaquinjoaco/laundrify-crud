@@ -1,0 +1,37 @@
+.home {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  margin-top: 4rem;
+  align-items: center;
+  max-width: 800px;
+}
+
+.counter-container {
+  display: flex;
+  flex-direction: row;
+  color: var(--white);
+  text-align: end;
+}
+
+.counter-p {
+  display: inline;
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.counter-p-span1 {
+  font-size: 40px;
+  font-weight: 700;
+}
+.counter-p-span2 {
+  font-weight: 600;
+}
+
+.counter-container:nth-child(2) {
+  margin-top: 5rem;
+}
+
+.counter-container:nth-child(3) {
+  margin-top: 2rem;
+}

@@ -1,14 +1,14 @@
 import React from 'react';
 import { MdClose, MdDeleteOutline } from "react-icons/md";
 
-function EditForm({ setIsEdit, client, address, orderItems, setClient, setAddress, setOrderId, setOrderItems, editOrder, deleteOrder, error, setError }) {
+function ClientEditForm({ setIsEdit, name, address, contact, setName, setAddress, setContact, setClientId, editClient, deleteOrder, error, setError }) {
 
 
      return (
 
-          <div className="new-write-popup">
+          <div className="new-write-popup client">
                <div className="top-container">
-                    <p className="card-edit-p">Editar registro</p>
+                    <p className="card-edit-p">Editar cliente</p>
                     <button className="new-close-btn" onClick={() => {
                          deleteOrder();
                          document.getElementById("cardsWrapper").classList.remove("blur");
@@ -19,10 +19,10 @@ function EditForm({ setIsEdit, client, address, orderItems, setClient, setAddres
                     <button className="new-close-btn" onClick={() => {
                          document.getElementById("cardsWrapper").classList.remove("blur");
                          setIsEdit(false);
-                         setClient("");
+                         setName("");
                          setAddress("");
-                         setOrderId("");
-                         setOrderItems("");
+                         setContact("");
+                         setClientId("");
                          setError("");
                     }}
                     >
@@ -32,25 +32,24 @@ function EditForm({ setIsEdit, client, address, orderItems, setClient, setAddres
                <div className="inputs-container">
                     <div className="nickname-container">
                          <label>Cliente</label>
-                         <input value={client} onChange={(e) => { setClient(e.target.value) }} type="text" />
+                         <input value={name} onChange={(e) => { setName(e.target.value) }} type="text" />
                     </div>
                     <div className="sanction-container">
                          <label>Dirección</label>
                          <input value={address} onChange={(e) => { setAddress(e.target.value) }} type="text" />
                     </div>
-                    <div className="reason-container">
-                         <label>Pedido</label>
-                         <p className="reason-p">Separado por comas (ropa1, ropa2, ropa3, ...)</p>
-                         <textarea value={orderItems} onChange={(e) => { setOrderItems(e.target.value) }} ></textarea>
+                    <div className="sanction-container">
+                         <label>Contacto</label>
+                         <input value={contact} onChange={(e) => { setContact(e.target.value) }} ></input>
                     </div>
 
                     {error ? (<p className="error-p">{error}</p>) : (<></>)}
 
-                    <button className="new-submit-btn" onClick={editOrder}>Editar</button>
+                    <button className="new-submit-btn" onClick={editClient}>Editar</button>
 
                </div>
           </div>
      )
 }
 
-export default EditForm
+export default ClientEditForm

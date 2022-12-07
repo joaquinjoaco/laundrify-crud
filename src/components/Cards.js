@@ -32,4 +32,4 @@ function Cards({ filteredItems, handleUpdate }) {
      )
 }
 
-export default Cards
+export default Cards;
