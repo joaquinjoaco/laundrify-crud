@@ -5,6 +5,7 @@
   grid-template-columns: repeat(4, 1fr);
   padding: 8rem;
   margin-inline: auto;
+  overflow: hidden;
   transition: 0.5s all;
 }
 
@@ -129,6 +130,7 @@
 
   .cards-wrapper {
     padding: 0rem;
+    padding-bottom: 200px;
     padding-top: 8rem;
   }
 }
