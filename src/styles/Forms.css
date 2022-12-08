@@ -186,6 +186,7 @@
   margin-bottom: 5px;
 }
 
+.nickname-container select,
 .nickname-container input,
 .staff-container input,
 .sanction-container input {

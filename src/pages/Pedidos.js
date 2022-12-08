@@ -85,7 +85,6 @@ function Pedidos({ isAuth, setShowMobileBar }) {
           setClient(tempClient);
           setAddress(tempAddress);
           setOrderItems(tempItems);
-          console.log(orderItems);
           setOrderId(tempId);
           document.getElementById("cardsWrapper").classList.add("blur");
           setIsEdit(true);
@@ -182,7 +181,6 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                {/* Hidden form to add a new order */}
                {!isHidden && <NewForm
                     setIsHidden={setIsHidden}
-                    client={client}
                     address={address}
                     orderItems={orderItems}
                     setClient={setClient}
@@ -191,12 +189,12 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     createOrder={createOrder}
                     error={error}
                     setError={setError}
+                    isAuth={isAuth}
                />}
 
                {/* Hidden form to edit an order */}
                {isEdit && <EditForm
                     setIsEdit={setIsEdit}
-                    client={client}
                     address={address}
                     orderItems={orderItems}
                     setClient={setClient}
@@ -207,6 +205,8 @@ function Pedidos({ isAuth, setShowMobileBar }) {
                     deleteOrder={deleteOrder}
                     error={error}
                     setError={setError}
+                    isAuth={isAuth}
+                    client={client}
                />}
 
                {/* orderList filteredItems is shown as a grid of Cards */}
